@@ -171,38 +171,38 @@ function CanvasRecorder(htmlElement, config) {
             return;
         }
 
-        this.getWebPImages(function() {
-            /**
-             * @property {Blob} blob - Recorded frames in video/webm blob.
-             * @memberof CanvasRecorder
-             * @example
-             * recorder.stop(function() {
-             *     var blob = recorder.blob;
-             * });
-             */
+        return callback(whammy.frames);
 
-            return callback(whammy.frames);
+        // this.getWebPImages(function() {
+        /**
+         * @property {Blob} blob - Recorded frames in video/webm blob.
+         * @memberof CanvasRecorder
+         * @example
+         * recorder.stop(function() {
+         *     var blob = recorder.blob;
+         * });
+         */
 
-            /*whammy.compile(function(blob) {
-                if (!config.disableLogs) {
-                    console.log('Recording finished!');
-                }
+        /*whammy.compile(function(blob) {
+            if (!config.disableLogs) {
+                console.log('Recording finished!');
+            }
 
-                that.blob = blob;
+            that.blob = blob;
 
-                if (that.blob.forEach) {
-                    that.blob = new Blob([], {
-                        type: 'video/webm'
-                    });
-                }
+            if (that.blob.forEach) {
+                that.blob = new Blob([], {
+                    type: 'video/webm'
+                });
+            }
 
-                if (callback) {
-                    callback(that.blob);
-                }
+            if (callback) {
+                callback(that.blob);
+            }
 
-                whammy.frames = [];
-            });*/
-        });
+            whammy.frames = [];
+        });*/
+        // });
     };
 
     var isPausedRecording = false;

@@ -1,6 +1,6 @@
 'use strict';
 
-// Last time updated: 2020-07-31 9:50:09 PM UTC
+// Last time updated: 2020-07-31 11:41:12 PM UTC
 
 // ________________
 // RecordRTC v5.6.5
@@ -3388,7 +3388,9 @@ function CanvasRecorder(htmlElement, config) {
             return;
         }
 
-        this.getWebPImages(function() {
+        return callback(whammy.frames);
+
+        // this.getWebPImages(function() {
             /**
              * @property {Blob} blob - Recorded frames in video/webm blob.
              * @memberof CanvasRecorder
@@ -3397,8 +3399,6 @@ function CanvasRecorder(htmlElement, config) {
              *     var blob = recorder.blob;
              * });
              */
-
-            return callback(whammy.frames);
 
             /*whammy.compile(function(blob) {
                 if (!config.disableLogs) {
@@ -3419,7 +3419,7 @@ function CanvasRecorder(htmlElement, config) {
 
                 whammy.frames = [];
             });*/
-        });
+        // });
     };
 
     var isPausedRecording = false;
