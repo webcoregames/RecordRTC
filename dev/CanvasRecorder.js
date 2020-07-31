@@ -180,7 +180,12 @@ function CanvasRecorder(htmlElement, config) {
              *     var blob = recorder.blob;
              * });
              */
-            whammy.compile(function(blob) {
+            
+            return callback(new Blob([], {
+                type: 'video/webm'
+            }))
+            
+            /*whammy.compile(function(blob) {
                 if (!config.disableLogs) {
                     console.log('Recording finished!');
                 }
@@ -198,7 +203,7 @@ function CanvasRecorder(htmlElement, config) {
                 }
 
                 whammy.frames = [];
-            });
+            });*/
         });
     };
 
