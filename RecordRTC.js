@@ -1,9 +1,9 @@
 'use strict';
 
-// Last time updated: 2020-07-31 7:21:23 PM UTC
+// Last time updated: 2020-07-31 9:50:09 PM UTC
 
 // ________________
-// RecordRTC v5.6.3
+// RecordRTC v5.6.5
 
 // Open-Sourced: https://github.com/muaz-khan/RecordRTC
 
@@ -781,7 +781,7 @@ function RecordRTC(mediaStream, config) {
          * @example
          * alert(recorder.version);
          */
-        version: '5.6.3'
+        version: '5.6.5'
     };
 
     if (!this) {
@@ -799,7 +799,7 @@ function RecordRTC(mediaStream, config) {
     return returnObject;
 }
 
-RecordRTC.version = '5.6.3';
+RecordRTC.version = '5.6.5';
 
 if (typeof module !== 'undefined' /* && !!module.exports*/ ) {
     module.exports = RecordRTC;
@@ -3388,11 +3388,7 @@ function CanvasRecorder(htmlElement, config) {
             return;
         }
 
-        return callback(new Blob([], {
-            type: 'video/webm'
-        }));
-
-        // this.getWebPImages(function() {
+        this.getWebPImages(function() {
             /**
              * @property {Blob} blob - Recorded frames in video/webm blob.
              * @memberof CanvasRecorder
@@ -3402,7 +3398,7 @@ function CanvasRecorder(htmlElement, config) {
              * });
              */
 
-            
+            return callback(whammy.frames);
 
             /*whammy.compile(function(blob) {
                 if (!config.disableLogs) {
@@ -3423,7 +3419,7 @@ function CanvasRecorder(htmlElement, config) {
 
                 whammy.frames = [];
             });*/
-        // });
+        });
     };
 
     var isPausedRecording = false;
@@ -5937,7 +5933,7 @@ function RecordRTCPromisesHandler(mediaStream, options) {
      * @example
      * alert(recorder.version);
      */
-    this.version = '5.6.3';
+    this.version = '5.6.5';
 }
 
 if (typeof RecordRTC !== 'undefined') {
