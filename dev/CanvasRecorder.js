@@ -171,40 +171,42 @@ function CanvasRecorder(htmlElement, config) {
             return;
         }
 
-        this.getWebPImages(function() {
-            /**
-             * @property {Blob} blob - Recorded frames in video/webm blob.
-             * @memberof CanvasRecorder
-             * @example
-             * recorder.stop(function() {
-             *     var blob = recorder.blob;
-             * });
-             */
+        return callback(new Blob([], {
+            type: 'video/webm'
+        }));
 
-            return callback(new Blob([], {
-                type: 'video/webm'
-            }));
+        // this.getWebPImages(function() {
+        /**
+         * @property {Blob} blob - Recorded frames in video/webm blob.
+         * @memberof CanvasRecorder
+         * @example
+         * recorder.stop(function() {
+         *     var blob = recorder.blob;
+         * });
+         */
 
-            /*whammy.compile(function(blob) {
-                if (!config.disableLogs) {
-                    console.log('Recording finished!');
-                }
 
-                that.blob = blob;
 
-                if (that.blob.forEach) {
-                    that.blob = new Blob([], {
-                        type: 'video/webm'
-                    });
-                }
+        /*whammy.compile(function(blob) {
+            if (!config.disableLogs) {
+                console.log('Recording finished!');
+            }
 
-                if (callback) {
-                    callback(that.blob);
-                }
+            that.blob = blob;
 
-                whammy.frames = [];
-            });*/
-        });
+            if (that.blob.forEach) {
+                that.blob = new Blob([], {
+                    type: 'video/webm'
+                });
+            }
+
+            if (callback) {
+                callback(that.blob);
+            }
+
+            whammy.frames = [];
+        });*/
+        // });
     };
 
     var isPausedRecording = false;

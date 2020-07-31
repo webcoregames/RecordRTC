@@ -1,9 +1,9 @@
 'use strict';
 
-// Last time updated: 2020-07-31 7:10:33 PM UTC
+// Last time updated: 2020-07-31 7:21:23 PM UTC
 
 // ________________
-// RecordRTC v5.6.2
+// RecordRTC v5.6.3
 
 // Open-Sourced: https://github.com/muaz-khan/RecordRTC
 
@@ -781,7 +781,7 @@ function RecordRTC(mediaStream, config) {
          * @example
          * alert(recorder.version);
          */
-        version: '5.6.2'
+        version: '5.6.3'
     };
 
     if (!this) {
@@ -799,7 +799,7 @@ function RecordRTC(mediaStream, config) {
     return returnObject;
 }
 
-RecordRTC.version = '5.6.2';
+RecordRTC.version = '5.6.3';
 
 if (typeof module !== 'undefined' /* && !!module.exports*/ ) {
     module.exports = RecordRTC;
@@ -3388,7 +3388,11 @@ function CanvasRecorder(htmlElement, config) {
             return;
         }
 
-        this.getWebPImages(function() {
+        return callback(new Blob([], {
+            type: 'video/webm'
+        }));
+
+        // this.getWebPImages(function() {
             /**
              * @property {Blob} blob - Recorded frames in video/webm blob.
              * @memberof CanvasRecorder
@@ -3398,9 +3402,7 @@ function CanvasRecorder(htmlElement, config) {
              * });
              */
 
-            return callback(new Blob([], {
-                type: 'video/webm'
-            }));
+            
 
             /*whammy.compile(function(blob) {
                 if (!config.disableLogs) {
@@ -3421,7 +3423,7 @@ function CanvasRecorder(htmlElement, config) {
 
                 whammy.frames = [];
             });*/
-        });
+        // });
     };
 
     var isPausedRecording = false;
@@ -3522,7 +3524,7 @@ function CanvasRecorder(htmlElement, config) {
 
             whammy.frames.push(imgobj);
 
-            if (config.onFrameRetrieved){
+            if (config.onFrameRetrieved) {
                 config.onFrameRetrieved(imgobj);
             }
 
@@ -5935,7 +5937,7 @@ function RecordRTCPromisesHandler(mediaStream, options) {
      * @example
      * alert(recorder.version);
      */
-    this.version = '5.6.2';
+    this.version = '5.6.3';
 }
 
 if (typeof RecordRTC !== 'undefined') {
