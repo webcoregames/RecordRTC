@@ -293,10 +293,15 @@ function CanvasRecorder(htmlElement, config) {
             // via #206, by Jack i.e. @Seymourr
             lastTime = new Date().getTime();
 
-            whammy.frames.push({
+            const imgobj = {
                 image: cloneCanvas(),
                 duration: duration
-            });
+            }
+            
+            whammy.frames.push(imgobj);
+            
+            if(config.onFrameRetrieved)
+                config.onFrameRetrieved(imgobj)
 
             if (isRecording) {
                 setTimeout(drawCanvasFrame, config.frameInterval);
