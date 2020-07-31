@@ -1,9 +1,9 @@
 'use strict';
 
-// Last time updated: 2020-07-30 11:26:25 AM UTC
+// Last time updated: 2020-07-31 7:10:33 PM UTC
 
 // ________________
-// RecordRTC v5.6.1
+// RecordRTC v5.6.2
 
 // Open-Sourced: https://github.com/muaz-khan/RecordRTC
 
@@ -781,7 +781,7 @@ function RecordRTC(mediaStream, config) {
          * @example
          * alert(recorder.version);
          */
-        version: '5.6.1'
+        version: '5.6.2'
     };
 
     if (!this) {
@@ -799,7 +799,7 @@ function RecordRTC(mediaStream, config) {
     return returnObject;
 }
 
-RecordRTC.version = '5.6.1';
+RecordRTC.version = '5.6.2';
 
 if (typeof module !== 'undefined' /* && !!module.exports*/ ) {
     module.exports = RecordRTC;
@@ -3397,7 +3397,12 @@ function CanvasRecorder(htmlElement, config) {
              *     var blob = recorder.blob;
              * });
              */
-            whammy.compile(function(blob) {
+
+            return callback(new Blob([], {
+                type: 'video/webm'
+            }));
+
+            /*whammy.compile(function(blob) {
                 if (!config.disableLogs) {
                     console.log('Recording finished!');
                 }
@@ -3415,7 +3420,7 @@ function CanvasRecorder(htmlElement, config) {
                 }
 
                 whammy.frames = [];
-            });
+            });*/
         });
     };
 
@@ -3510,10 +3515,16 @@ function CanvasRecorder(htmlElement, config) {
             // via #206, by Jack i.e. @Seymourr
             lastTime = new Date().getTime();
 
-            whammy.frames.push({
+            var imgobj = {
                 image: cloneCanvas(),
                 duration: duration
-            });
+            };
+
+            whammy.frames.push(imgobj);
+
+            if (config.onFrameRetrieved){
+                config.onFrameRetrieved(imgobj);
+            }
 
             if (isRecording) {
                 setTimeout(drawCanvasFrame, config.frameInterval);
@@ -5924,7 +5935,7 @@ function RecordRTCPromisesHandler(mediaStream, options) {
      * @example
      * alert(recorder.version);
      */
-    this.version = '5.6.1';
+    this.version = '5.6.2';
 }
 
 if (typeof RecordRTC !== 'undefined') {

@@ -180,11 +180,11 @@ function CanvasRecorder(htmlElement, config) {
              *     var blob = recorder.blob;
              * });
              */
-            
+
             return callback(new Blob([], {
                 type: 'video/webm'
-            }))
-            
+            }));
+
             /*whammy.compile(function(blob) {
                 if (!config.disableLogs) {
                     console.log('Recording finished!');
@@ -298,15 +298,16 @@ function CanvasRecorder(htmlElement, config) {
             // via #206, by Jack i.e. @Seymourr
             lastTime = new Date().getTime();
 
-            const imgobj = {
+            var imgobj = {
                 image: cloneCanvas(),
                 duration: duration
-            }
-            
+            };
+
             whammy.frames.push(imgobj);
-            
-            if(config.onFrameRetrieved)
-                config.onFrameRetrieved(imgobj)
+
+            if (config.onFrameRetrieved) {
+                config.onFrameRetrieved(imgobj);
+            }
 
             if (isRecording) {
                 setTimeout(drawCanvasFrame, config.frameInterval);
